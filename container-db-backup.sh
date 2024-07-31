@@ -91,7 +91,7 @@ function backup_postgres_db() {
 
 # Function to clean up old backups
 # This function is used to clean up old backups in a specified directory. It deletes backup files that are older than a specified number of days.
-# 
+#
 # Syntax: cleanup_backups BACKUPDIR DAYS container
 #
 # Arguments:
@@ -268,7 +268,7 @@ while [[ $# -gt 0 ]]; do
             shift 2
             ;;
         --retention-days)
-            DAYS="$2"
+            RETENTION_DAYS="$2"
             shift 2
             ;;
         --max-jobs)
