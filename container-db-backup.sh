@@ -98,13 +98,24 @@ function backup_postgres_db() {
 # * backup_dir: The path to the directory where the backup files are stored.
 # * days: The number of days after which a backup file is considered old and should be deleted.
 # * container: The name of the container for which the backup files are being managed.
+#
+# Returns:
+# * None
+#
+# Side effects:
+# * Deletes backup files that are older than the specified number of days.
+#
 function cleanup_backups() {
+    # Get the input arguments
     local backup_dir=$1
     local days=$2
     local container=$3
 
+    # Count the number of backup files for the specified container
     local old_backups
-    old_backups=$(ls -1 "$backup_dir"/"$container"*.gz | wc -l)
+    old_backups=$(find "$backup_dir" -maxdepth 1 -type f -name "$container*.gz" | wc -l)
+
+    # If there are more backup files than the specified number of days, delete the oldest ones
     if [[ "$old_backups" -gt $days ]]; then
         find "$backup_dir" -name "$container*.gz" -mtime +"$days" -delete
     fi
