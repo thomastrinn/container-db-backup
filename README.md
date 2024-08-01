@@ -1,4 +1,9 @@
-This shell script backs up all PostgreSQL databases running in Docker containers. It saves the backups to a backup directory and deletes backups older than a specified number of days.
+This shell script backs up all dockerized databases. It saves the backups to a backup directory and deletes backups older than a specified number of days.
+The script automatically detects containers by image names, so as long as the container is running an image with a supported database, the script will be able to backup the database. 
+
+## Supported Databases
+
+Currently, the script supports backups for PostgreSQL databases.
 
 ## Dependencies
 
