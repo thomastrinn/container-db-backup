@@ -294,6 +294,11 @@ if ! command -v docker &> /dev/null; then
     handle_error "docker command could not be found. Please install docker and try again." 1
 fi
 
+# Check if gzip command is available
+if ! command -v gzip &> /dev/null; then
+    handle_error "gzip command could not be found. Please install gzip and try again." 1
+fi
+
 # If the backup directory doesn't exist, create it
 if [ ! -d "$BACKUP_DIR" ]; then
     mkdir -p "$BACKUP_DIR"
